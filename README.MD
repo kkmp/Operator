@@ -135,7 +135,7 @@ Wynik działania poleceń:
 
 # Krok 3
 ## 3A.
-Tę część zadania rozpocząłem od przygotowania pliku `Dockerfile`, który korzysta z obrazu alpine w najnowszej wersji, a także pozwala zaktualizować pakiety systemowe oraz zainstalować programy `git`, `curl` oraz `kubectl`. W celu zbudowania i wypchnięcia obrazu `zad2gitops` do repozytorium, wykorzystałem polecenia:
+Tę część zadania rozpocząłem od przygotowania pliku [Dockerfile](https://github.com/kkmp/Operator/blob/main/Dockerfile), który korzysta z obrazu alpine w najnowszej wersji, a także pozwala zaktualizować pakiety systemowe oraz zainstalować programy `git`, `curl` oraz `kubectl`. W celu zbudowania i wypchnięcia obrazu `zad2gitops` do repozytorium, wykorzystałem polecenia:
 
 ```
 docker build -t kkmp13/zad2gitops .
@@ -143,8 +143,8 @@ docker push kkmp13/zad2gitops:latest
 ```
 
 ## 3B.
-W dalszej części utworzyłem dodatkowy plik `pv.yaml`, zawierający definicję obiektu typu PersistentVolume o wielkości 1 Gi z typem dostępu ReadWriteOnce. W związku z tym utworzyłem również obiekt z żądaniem utworzenia zasobu PersistentVolumeClaim o analogicznych parametrach (plik `pvc.yaml`).  
-Kolejnym krokiem było utworzenie pliku `operator.yaml` definiującego obiekt CronJob. Obiekt korzysta ze skonfigurowanego zasobu pvc oraz zbudowanego obrazu `zad2gitops`, aby uruchamiać co dwie minuty polecenia umożliwiające usunięcie starej wersji repozytorium, ponowne jego sklonowanie, odnalezienie pobranych plików yaml oraz ich zastosowanie.
+W dalszej części utworzyłem dodatkowy plik [pv.yaml](https://github.com/kkmp/Operator/blob/main/pv.yaml), zawierający definicję obiektu typu PersistentVolume o wielkości 1 Gi z typem dostępu ReadWriteOnce. W związku z tym utworzyłem również obiekt z żądaniem utworzenia zasobu PersistentVolumeClaim o analogicznych parametrach (plik [pvc.yaml](https://github.com/kkmp/Operator/blob/main/pvc.yaml)).  
+Kolejnym krokiem było utworzenie pliku [operator.yaml](https://github.com/kkmp/Operator/blob/main/operator.yaml) definiującego obiekt CronJob. Obiekt korzysta ze skonfigurowanego zasobu pvc oraz zbudowanego obrazu `zad2gitops`, aby uruchamiać co dwie minuty polecenia umożliwiające usunięcie starej wersji repozytorium, ponowne jego sklonowanie, odnalezienie pobranych plików yaml oraz ich zastosowanie.
 
 Aby po raz pierwszy uruchomić zdefiniowane manifesty plików yaml oraz nadać uprawnienia operatorowi do późniejszej aktualizacji utworzonych obiektów, wydałem następujący zestaw poleceń:
 
