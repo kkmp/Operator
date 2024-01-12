@@ -1,0 +1,27 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: stepcd
+spec:
+  schedule: "*/2 * * * *"
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      backoffLimit: 0
+      template:
+        spec:
+          restartPolicy: Never
+          serviceAccountName: gitops
+          volumes:
+            - name: config-volume
+              persistentVolumeClaim:
+                claimName: zad2-pvc
+          containers:
+            - name: zad2gitops 
+              image: kkmp13/zad2gitops:latest
+              command: [sh, -e, -c]
+              args:
+                - rm -rf /temp/config-repo && git clone https://github.com/kkmp/Config-repo.git /temp/config-repo && find /temp/config-repo -name '*.yaml' -exec kubectl apply -f {} \;
+              volumeMounts:
+                - name: config-volume
+                  mountPath: "/temp"
