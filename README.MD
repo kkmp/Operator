@@ -14,8 +14,8 @@ Repozytoria dostępne są pod następującymi adresami:
 + [Config-repo](https://github.com/kkmp/Config-repo)
 
 Zadanie wymagało również utworzenia dwóch repozytoriów DockerHub, które są dostępne pod poniższymi linkami:
-+ [Obraz zad2](https://hub.docker.com/repository/docker/kkmp13/zad2/general)
-+ [Obraz zad2gitops](https://hub.docker.com/repository/docker/kkmp13/zad2gitops/general)
++ [Obraz zad2](https://hub.docker.com/r/kkmp13/zad2)
++ [Obraz zad2gitops](https://hub.docker.com/r/kkmp13/zad2gitops)
 
 W dalszej części pobrałem lokalnie utworzone repozytoria, przy użyciu komend:
 ```
